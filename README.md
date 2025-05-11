@@ -18,6 +18,7 @@ V-Sync: Disabled
 Launch Options: -novid -high -nojoy +fps_max 300
 
 
+
 Issue Description
 While spectating in CS2 (after dying), my FPS consistently drops from ~280 FPS to exactly 60 FPS, despite my CPU and GPU usage dropping to 10–20%. This only happens in CS2 — not in any other Source or non-Source games.
 
@@ -30,6 +31,7 @@ If I press Tab to open the scoreboard.
 Once I open either menu, the FPS jumps back up to ~280 and stays there until the next round starts or I die again.
 
 This strongly suggests the game engine is downclocking or throttling rendering while spectating and not properly resuming full performance when it should.
+
 
 
 Troubleshooting Done
@@ -47,12 +49,21 @@ Clean config and verified game files
 
 Confirmed issue is not present in other games
 
+
+
 Expected Behavior
 When spectating, FPS should remain consistent with when playing — no performance throttling unless intentionally enabled by the player.
 
 
+
 Actual Behavior
 FPS drops to 60 only while spectating; returns to normal when interacting with UI.
+
+
+
+Suggested Cause
+The engine likely interprets spectating + no input as "idle" and reduces render priority or frame rate — but does not reset it correctly without UI interaction.
+
 
 
 
